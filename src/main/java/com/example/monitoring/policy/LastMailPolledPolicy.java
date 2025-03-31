@@ -22,7 +22,7 @@ public class LastMailPolledPolicy {
     @Autowired
     private MonitoringRepository monitoringRepository;
     
-    @KafkaListener(topics = "mail", groupId = "mail-1")
+    @KafkaListener(topics = "mail", groupId = "mail-monitoring")
     public void listen(
             @Header(value = "type", required = false) String type,
             @Payload String data
@@ -35,9 +35,7 @@ public class LastMailPolledPolicy {
                 if (payload != null) {
                     Monitoring monitoring = monitoringRepository.findById(payload.getUserId()).orElse(null);
                     if (monitoring != null) {
-                        monitoring.setLastReadTime(payload.getLastMailArrivedAt());
-                        monitoring.setIsPollingState(false);
-                        monitoringRepository.save(monitoring);
+                        monitoringService.updateMonitoringMeta(payload);
                     }
                 } else {
                     System.out.println("Warning: Payload is null");
