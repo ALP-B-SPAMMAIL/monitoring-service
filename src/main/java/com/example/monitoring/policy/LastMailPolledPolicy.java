@@ -36,6 +36,7 @@ public class LastMailPolledPolicy {
                     Monitoring monitoring = monitoringRepository.findById(payload.getUserId()).orElse(null);
                     if (monitoring != null) {
                         monitoring.setLastReadTime(payload.getLastMailArrivedAt());
+                        monitoring.setIsPollingState(false);
                         monitoringRepository.save(monitoring);
                     }
                 } else {
