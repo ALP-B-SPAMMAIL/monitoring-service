@@ -2,6 +2,8 @@ package com.example.monitoring.model;
 
 import java.time.LocalDateTime;
 
+import com.example.monitoring.dto.UpdateMonitoringSpecDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -30,5 +32,12 @@ public class Monitoring {
 
     public void setIsPollingState(boolean isPollingState) {
         this.isPollingState = isPollingState;
+    }
+
+    public void updateMonitoringSpec(UpdateMonitoringSpecDto updateMonitoringSpecDto) {
+        this.protocolType = updateMonitoringSpecDto.getProtocolType();
+        this.serverAddress = updateMonitoringSpecDto.getServerAddress();
+        this.emailAddress = updateMonitoringSpecDto.getEmailAddress();
+        this.emailPassword = updateMonitoringSpecDto.getEmailPassword();
     }
 }

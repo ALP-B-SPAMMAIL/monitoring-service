@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.example.monitoring.dto.UpdateMonitoringSpecDto;
 import com.example.monitoring.event.MonitoringTriggeredEvent;
 import com.example.monitoring.eventDto.LastMailPolledEventDto;
 import com.example.monitoring.eventDto.MonitoringTriggeredEventDto;
@@ -51,6 +52,15 @@ public class MonitoringService {
             if (lastMailPolledEventDto.getLastMailArrivedAt().isAfter(monitoring.getLastReadTime()))
                 monitoring.setLastReadTime(lastMailPolledEventDto.getLastMailArrivedAt());
             monitoring.setIsPollingState(false);
+            monitoringRepository.save(monitoring);
+        }
+    }
+
+    @Transactional
+    public void updateMonitoringSpec(UpdateMonitoringSpecDto updateMonitoringSpecDto) {
+        Monitoring monitoring = monitoringRepository.findById(updateMonitoringSpecDto.getUserId()).orElse(null);
+        if (monitoring != null) {
+            monitoring.updateMonitoringSpec(updateMonitoringSpecDto);
             monitoringRepository.save(monitoring);
         }
     }
