@@ -22,7 +22,7 @@ public class LastMailPolledPolicy {
     @Autowired
     private MonitoringRepository monitoringRepository;
     
-    @KafkaListener(topics = "mail", groupId = "mail-monitoring")
+    @KafkaListener(topics = "mail", groupId = "mail-monitoring-last-mail-polled")
     public void listen(
             @Header(value = "type", required = false) String type,
             @Payload String data

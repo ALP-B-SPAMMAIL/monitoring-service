@@ -64,4 +64,17 @@ public class MonitoringService {
             monitoringRepository.save(monitoring);
         }
     }
+
+    @Transactional
+    public void deleteMonitoring(int userId) {
+        monitoringRepository.deleteById(userId);
+    }
+
+    @Transactional
+    public void createMonitoring(int userId) {
+        Monitoring monitoring = Monitoring.builder()
+            .userId(userId)
+            .build();
+        monitoringRepository.save(monitoring);
+    }
 }
