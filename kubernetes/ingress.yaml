@@ -6,10 +6,10 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: monitoring-service.kt.com  # 이 도메인으로 들어오는 요청 처리 -> 나중에 변경하기
+    - host: whowhomail.kro.kr  # 이 도메인으로 들어오는 요청 처리 -> 나중에 변경하기
       http:
         paths:
-          - path: /
+          - path: /monitoring/**
             pathType: Prefix
             backend:
               service:
