@@ -11,12 +11,10 @@ public class LastMailPolledEvent extends AbstractEvent {
     private LastMailPolledEventDto payload;
     public LastMailPolledEvent(LastMailPolledEventDto lastMailPolledEventDto) {
         super(lastMailPolledEventDto);
-        this.topic = "mail";
         this.payload = lastMailPolledEventDto;
     }
 
     public LastMailPolledEvent() {
         super();
-        this.topic = "mail";
     }
 }

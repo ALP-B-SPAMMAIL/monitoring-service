@@ -19,7 +19,7 @@ public class UserRegiteredPolicy {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
     
-    @KafkaListener(topics = "user", groupId = "user-monitoring-user-registered")
+    @KafkaListener(topics = "mail", groupId = "user-monitoring-user-registered")
     public void listen(
         @Header(value = "type", required = false) String type,
         @Payload String data

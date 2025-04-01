@@ -39,5 +39,6 @@ public class Monitoring {
         this.serverAddress = updateMonitoringSpecDto.getServerAddress();
         this.emailAddress = updateMonitoringSpecDto.getEmailAddress();
         this.emailPassword = updateMonitoringSpecDto.getEmailPassword();
+        this.isPollingState = false;
     }
 }

@@ -12,12 +12,10 @@ public class UserResignedEvent extends AbstractEvent{
 
     public UserResignedEvent() {
         super();
-        this.topic = "user";
     }
 
     public UserResignedEvent(UserResignedEventDto payload) {
         super(payload);
-        this.topic = "user";
         this.payload = payload;
     }
 }

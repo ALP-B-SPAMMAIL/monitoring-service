@@ -16,7 +16,7 @@ public class UserResignedPolicy {
     @Autowired
     private MonitoringService monitoringService;
 
-    @KafkaListener(topics = "user", groupId = "user-monitoring-user-resigned")
+    @KafkaListener(topics = "mail", groupId = "user-monitoring-user-resigned")
     public void listen(
         @Header(value = "type", required = false) String type,
         @Payload String data

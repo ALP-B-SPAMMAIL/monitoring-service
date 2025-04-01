@@ -23,8 +23,10 @@ import jakarta.transaction.Transactional;
 public class MonitoringService {
     @Autowired
     private MonitoringRepository monitoringRepository;
+
     @Autowired
     private KafkaProducer kafkaProducer;
+    
     @Scheduled(fixedRate = 10000)
     public void publishMonitoringTriggeredEvent() {
         try {
@@ -32,10 +34,9 @@ public class MonitoringService {
             for (Monitoring monitoring : monitoringList) {
                 MonitoringTriggeredEventDto monitoringTriggeredEventDto = new MonitoringTriggeredEventDto(monitoring);
                 MonitoringTriggeredEvent event = new MonitoringTriggeredEvent(monitoringTriggeredEventDto);
-                kafkaProducer.publish(event);
-
                 monitoring.setIsPollingState(true);
                 monitoringRepository.save(monitoring);
+                kafkaProducer.publish(event);
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
