@@ -1,5 +1,7 @@
 package com.example.monitoring.service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +76,7 @@ public class MonitoringService {
     public void createMonitoring(int userId) {
         Monitoring monitoring = Monitoring.builder()
             .userId(userId)
+            .lastReadTime(LocalDateTime.now().atZone(ZoneId.systemDefault()).toLocalDateTime())
             .build();
         monitoringRepository.save(monitoring);
     }
