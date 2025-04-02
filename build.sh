@@ -5,4 +5,6 @@ if [ -z "$1" ]; then
 else
     docker build -t team04registry.azurecr.io/monitoring-service:$1 .
     docker push team04registry.azurecr.io/monitoring-service:$1
+
+    kubectl rollout restart deployment monitoring-service
 fi

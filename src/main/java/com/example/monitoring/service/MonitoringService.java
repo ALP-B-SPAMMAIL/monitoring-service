@@ -78,7 +78,13 @@ public class MonitoringService {
         Monitoring monitoring = Monitoring.builder()
             .userId(userId)
             .lastReadTime(LocalDateTime.now().atZone(ZoneId.systemDefault()).toLocalDateTime())
+            .isInitialized(false)
             .build();
         monitoringRepository.save(monitoring);
+    }
+
+    public Monitoring getMonitoring(int userId) {
+        Monitoring monitoring = monitoringRepository.findById(userId).orElse(null);
+        return monitoring;
     }
 }

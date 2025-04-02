@@ -25,6 +25,7 @@ public class Monitoring {
     private String emailPassword;
     private LocalDateTime lastReadTime;
     private boolean isPollingState;
+    private boolean isInitialized;
 
     public void setLastReadTime(LocalDateTime lastReadTime) {
         this.lastReadTime = lastReadTime;
@@ -40,5 +41,6 @@ public class Monitoring {
         this.emailAddress = updateMonitoringSpecDto.getEmailAddress();
         this.emailPassword = updateMonitoringSpecDto.getEmailPassword();
         this.isPollingState = false;
+        this.isInitialized = true;
     }
 }

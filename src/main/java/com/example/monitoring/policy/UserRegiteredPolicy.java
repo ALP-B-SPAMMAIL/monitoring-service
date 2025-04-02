@@ -24,6 +24,7 @@ public class UserRegiteredPolicy {
         @Header(value = "type", required = false) String type,
         @Payload String data
     ) {
+        System.out.println("listened" + type);
         if (type.equals("UserRegisteredEvent")) {
             try {
                 UserRegisteredEvent userRegisteredEvent = objectMapper.readValue(data, UserRegisteredEvent.class);
