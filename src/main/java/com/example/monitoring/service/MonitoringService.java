@@ -27,7 +27,7 @@ public class MonitoringService {
     @Autowired
     private KafkaProducer kafkaProducer;
     
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 1000)
     public void publishMonitoringTriggeredEvent() {
         try {
             List<Monitoring> monitoringList = monitoringRepository.findByIsPollingState(false);
@@ -56,6 +56,7 @@ public class MonitoringService {
                 monitoring.setLastReadTime(lastMailPolledEventDto.getLastMailArrivedAt());
             monitoring.setIsPollingState(false);
             monitoringRepository.save(monitoring);
+            System.out.println("EVENT POLICY : monitoring.pollingstate: " + monitoring.isPollingState());
         }
     }
 

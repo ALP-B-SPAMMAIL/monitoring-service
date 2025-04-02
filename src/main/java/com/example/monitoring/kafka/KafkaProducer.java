@@ -24,5 +24,6 @@ public class KafkaProducer {
         ProducerRecord<String, String> record = new ProducerRecord<>("mail", objectMapper.writeValueAsString(event));
         record.headers().add(new RecordHeader("type", event.getEventType().getBytes(StandardCharsets.UTF_8)));
         kafkaTemplate.send(record);
+        System.out.println("EVENT PUBLISHED: " + event.getEventType());
     }
 }

@@ -21,6 +21,7 @@ public class UserResignedPolicy {
         @Header(value = "type", required = false) String type,
         @Payload String data
     ) {
+        System.out.println("EVENT RECEIVED: " + type);
         if (type.equals("UserResignedEvent")) {
             try {
                 ObjectMapper objectMapper = new ObjectMapper();     
